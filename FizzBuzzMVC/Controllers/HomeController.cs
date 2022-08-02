@@ -26,7 +26,29 @@ namespace FizzBuzzMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(FBModel )
+        public IActionResult Index(FBModel model)
+        {
+            for (int i = model.StartNum; i <= model.EndNum; i++)
+            {
+                if (i % model.FizzNum == 0 && i % model.BuzzNum == 0)
+                {
+                    model.Results.Add("FizzBuzz");
+                }
+                else if (i % model.FizzNum == 0)
+                {
+                    model.Results.Add("Fizz");
+                }
+                else if (i % model.BuzzNum == 0)
+                {
+                    model.Results.Add("Buzz");
+                }
+                else
+                {
+                    model.Results.Add(i.ToString());
+                }
+            }
+            return View(model);
+        }
 
         public IActionResult Privacy()
         {
